@@ -6,17 +6,37 @@
 		<meta name = "description" content = "Fancy a game of Tic Tac Toe?">
 	</head>
 	<body>
-		<div id="square-zero" class="board-square" onclick="playSquare(0, 'square-zero')"></div>
-		<div id="square-one" class="board-square" onclick="playSquare(1, 'square-one')"></div>
-		<div id="square-two" class="board-square" onclick="playSquare(2, 'square-two')"></div>
-		<br>
-		<div id="square-three" class="board-square" onclick="playSquare(3, 'square-three')"></div>
-		<div id="square-four" class="board-square" onclick="playSquare(4, 'square-four')"></div>
-		<div id="square-five" class="board-square" onclick="playSquare(5, 'square-five')"></div>
-		<br>
-		<div id="square-six" class="board-square" onclick="playSquare(6, 'square-six')"></div>
-		<div id="square-seven" class="board-square" onclick="playSquare(7, 'square-seven')"></div>
-		<div id="square-eight" class="board-square" onclick="playSquare(8, 'square-eight')"></div>
+		<div class="game-board">
+			<div id="square-zero" class="board-square" onclick="playSquare(0, 'square-zero')"></div>
+			<div id="square-one" class="board-square" onclick="playSquare(1, 'square-one')"></div>
+			<div id="square-two" class="board-square" onclick="playSquare(2, 'square-two')"></div>
+			<br>
+			<div id="square-three" class="board-square" onclick="playSquare(3, 'square-three')"></div>
+			<div id="square-four" class="board-square" onclick="playSquare(4, 'square-four')"></div>
+			<div id="square-five" class="board-square" onclick="playSquare(5, 'square-five')"></div>
+			<br>
+			<div id="square-six" class="board-square" onclick="playSquare(6, 'square-six')"></div>
+			<div id="square-seven" class="board-square" onclick="playSquare(7, 'square-seven')"></div>
+			<div id="square-eight" class="board-square" onclick="playSquare(8, 'square-eight')"></div>
+		<div>
+		<ul>
+			<li>Player One: <span id="player-one-wins">0</span></li>
+			<li>Player Two: <span id="player-two-wins">0</span></li>
+			<li>Cat Games: <span id="ties">0</span></li>
+		</ul>
+<!-- 		<table>
+			<thead><td></td><td>Record</td><td></td></thead>
+			<tr>
+				<td>Ties</td>
+				<td>Player One Wins</td>
+				<td>Player Two Wins</td>
+			</tr>
+			<tr>
+				<td id="ties">0</td>
+				<td id="player-one-wins">0</td>
+				<td id="player-two-wins">0</td>
+			</tr>
+		</table> -->
 	</body>
 	<script type="text/javascript" src="js/ttt.js"></script>
 </html>

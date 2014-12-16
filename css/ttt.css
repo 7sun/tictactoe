@@ -2,8 +2,8 @@ body {
 	text-align: center;
 }
 
-div {
-	background-color: #FFF;
+ul {
+	text-align: left;
 }
 
 .board-square {
