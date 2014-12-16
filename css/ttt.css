@@ -2,6 +2,10 @@ body {
 	text-align: center;
 }
 
+div {
+	background-color: #FFF;
+}
+
 .board-square {
 	width: 200px;
 	height: 200px;
@@ -10,3 +14,4 @@ body {
 	display: inline-block;
 	margin: 5px;
 }
+

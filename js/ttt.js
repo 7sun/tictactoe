@@ -1,8 +1,17 @@
 var boardArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var startingPlayer = "player one";
 var currentPlayer = "player one";
-var squareZero = document.getElementById("square-zero"); 
+// var squareZero = document.getElementById("square-zero"); 
 
+
+function resetGame() {
+	var divs = document.getElementsByTagName("div")
+	for (i = 0; i < boardArray.length; i++) {
+		boardArray[i] = 0;
+		divs[i].style.backgroundColor = "#000";
+	}
+	changeStartingPlayer();
+};
 
 function changeStartingPlayer(){
 	if (startingPlayer == "player one"){
@@ -22,12 +31,12 @@ function changeTurn(){
 	}
 };
 
-function playSquare(x, y) {
+function playSquare(squareNum, idName) {
 	if (currentPlayer == "player one"){
-		if (boardArray[x] == 0){
-			boardArray[x] = 1;
-			document.getElementById(y).style.backgroundColor = "#f00";
-			playerOneOutcome();
+		if (boardArray[squareNum] == 0){
+			boardArray[squareNum] = 1;
+			document.getElementById(idName).style.backgroundColor = "#f00";
+			outcome(1);
 			changeTurn();
 		}
 		else {
@@ -35,10 +44,10 @@ function playSquare(x, y) {
 		}
 	}
 	else if (currentPlayer == "player two"){
-		if (boardArray[x] == 0){
-			boardArray[x] = 2;
-			document.getElementById(y).style.backgroundColor = "#00f";
-			playerTwoOutcome();
+		if (boardArray[squareNum] == 0){
+			boardArray[squareNum] = 2;
+			document.getElementById(idName).style.backgroundColor = "#00f";
+			outcome(2);
 			changeTurn();
 		}
 		else {
@@ -47,91 +56,45 @@ function playSquare(x, y) {
 	}
 };
 
-function playerOneOutcome(){
-	if (boardArray[0] == 1 && boardArray[0] == boardArray[1] && boardArray[1] == boardArray[2]){
-		console.log("you win!");
-		changeStartingPlayer();
+function outcome(playerNum){
+	if (boardArray[0] == playerNum && boardArray[0] == boardArray[1] && boardArray[1] == boardArray[2]){
+		alert("Player " + playerNum + " wins!");
+		resetGame();
 	}
 
-	else if (boardArray[3] == 1 && boardArray[3] == boardArray[4] && boardArray[4] == boardArray[5]){
-		console.log("you win!");
-		changeStartingPlayer();
+	else if (boardArray[3] == playerNum && boardArray[3] == boardArray[4] && boardArray[4] == boardArray[5]){
+		alert("Player " + playerNum + " wins!");
+		resetGame();
 	}
 
-	else if (boardArray[6] == 1 && boardArray[6] == boardArray[7] && boardArray[7] == boardArray[8]){
-		console.log("you win!");
-		changeStartingPlayer();
+	else if (boardArray[6] == playerNum && boardArray[6] == boardArray[7] && boardArray[7] == boardArray[8]){
+		alert("Player " + playerNum + " wins!");
+		resetGame();
 	}
 
-	else if (boardArray[0] == 1 && boardArray[0] == boardArray[3] && boardArray[3] == boardArray[6]){
-		console.log("you win!");
-		changeStartingPlayer();
+	else if (boardArray[0] == playerNum && boardArray[0] == boardArray[3] && boardArray[3] == boardArray[6]){
+		alert("Player " + playerNum + " wins!");
+		resetGame();
 	}
 
-	else if (boardArray[1] == 1 && boardArray[1] == boardArray[4] && boardArray[4] == boardArray[7]){
-		console.log("you win!");
-		changeStartingPlayer();
+	else if (boardArray[1] == playerNum && boardArray[1] == boardArray[4] && boardArray[4] == boardArray[7]){
+		alert("Player " + playerNum + " wins!");
+		resetGame();
 	}
 
-	else if (boardArray[2] == 1 && boardArray[2] == boardArray[5] && boardArray[5] == boardArray[8]){
-		console.log("you win!");
-		changeStartingPlayer();
+	else if (boardArray[2] == playerNum && boardArray[2] == boardArray[5] && boardArray[5] == boardArray[8]){
+		alert("Player " + playerNum + " wins!");
+		resetGame();
 	}
 
-	else if (boardArray[0] == 1 && boardArray[0] == boardArray[4] && boardArray[4] == boardArray[8]){
-		console.log("you win!");
-		changeStartingPlayer();
+	else if (boardArray[0] == playerNum && boardArray[0] == boardArray[4] && boardArray[4] == boardArray[8]){
+		alert("Player " + playerNum + " wins!");
+		resetGame();
 	}
 
-	else if (boardArray[2] == 1 && boardArray[2] == boardArray[4] && boardArray[4] == boardArray[6]){
-		console.log("you win!");
-		changeStartingPlayer();
-	}
-
-	else {
-		checkForTie();
-	}
-};
-
-function playerTwoOutcome(){
-	if (boardArray[0] == 2 && boardArray[0] == boardArray[1] && boardArray[1] == boardArray[2]){
-		console.log("you win!");
-		changeStartingPlayer();
-	}
-
-	else if (boardArray[3] == 2 && boardArray[3] == boardArray[4] && boardArray[4] == boardArray[5]){
-		console.log("you win!");
-		changeStartingPlayer();
-	}
-
-	else if (boardArray[6] == 2 && boardArray[6] == boardArray[7] && boardArray[7] == boardArray[8]){
-		console.log("you win!");
-		changeStartingPlayer();
-	}
-
-	else if (boardArray[0] == 2 && boardArray[0] == boardArray[3] && boardArray[3] == boardArray[6]){
-		console.log("you win!");
-		changeStartingPlayer();
-	}
-
-	else if (boardArray[1] == 2 && boardArray[1] == boardArray[4] && boardArray[4] == boardArray[7]){
-		console.log("you win!");
-		changeStartingPlayer();
-	}
-
-	else if (boardArray[2] == 2 && boardArray[2] == boardArray[5] && boardArray[5] == boardArray[8]){
-		console.log("you win!");
-		changeStartingPlayer();
-	}
-
-	else if (boardArray[0] == 2 && boardArray[0] == boardArray[4] && boardArray[4] == boardArray[8]){
-		console.log("you win!");
-		changeStartingPlayer();
-	}
-
-	else if (boardArray[2] == 2 && boardArray[2] == boardArray[4] && boardArray[4] == boardArray[6]){
-		console.log("you win!");
-		changeStartingPlayer();
+	else if (boardArray[2] == playerNum && boardArray[2] == boardArray[4] && boardArray[4] == boardArray[6]){
+		alert("Player " + playerNum + " wins!");
+		resetGame();
 	}
 
 	else {
@@ -141,10 +104,8 @@ function playerTwoOutcome(){
 
 
 function checkForTie(){
-	if(boardArray.indexOf(0) > -1) {
-		console.log("keep playing!");
-	}
-	else {
-		console.log("tie game");
+	if (boardArray.indexOf(0) == -1) {
+		alert("Tie Game.");
+		resetGame();
 	}
 };
