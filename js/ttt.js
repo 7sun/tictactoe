@@ -11,7 +11,8 @@ function resetGame() {
 	var boardClass = document.getElementsByClassName("board-square")
 	for (i = 0; i < boardArray.length; i++) {
 		boardArray[i] = 0;
-		boardClass[i].style.backgroundColor = "#000";
+		boardClass[i].style.backgroundColor = "#ecf0f1";
+		// boardClass[i].className = "board-square";
 	}
 	ties.innerHTML = scoreBoard[0].toString();
 	playerOneWinsCounter.innerHTML = scoreBoard[1].toString();
@@ -39,9 +40,11 @@ function changeTurn(){
 
 function playSquare(squareNum, idName) {
 	if (currentPlayer == "player one"){
+		var square = document.getElementById(idName)
 		if (boardArray[squareNum] == 0){
 			boardArray[squareNum] = 1;
-			document.getElementById(idName).style.backgroundColor = "#f00";
+			square.style.backgroundColor = "#e67e22";
+			// square.className = square.className + " fade";
 			outcome(1);
 			changeTurn();
 		}
@@ -52,7 +55,7 @@ function playSquare(squareNum, idName) {
 	else if (currentPlayer == "player two"){
 		if (boardArray[squareNum] == 0){
 			boardArray[squareNum] = 2;
-			document.getElementById(idName).style.backgroundColor = "#00f";
+			document.getElementById(idName).style.backgroundColor = "#1abc9c";
 			outcome(2);
 			changeTurn();
 		}

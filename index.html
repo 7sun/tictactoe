@@ -3,9 +3,24 @@
 	<head>
 		<title>Tic Tac Toe</title>
 		<link rel="stylesheet" type="text/css" href="css/ttt.css">
+		<!-- <link rel="stylesheet" type="text/css" href="css/clouds.css"> -->
 		<meta name = "description" content = "Fancy a game of Tic Tac Toe?">
 	</head>
 	<body>
+		<div id="background-wrap">
+		    <div class="x1">
+		        <div class="cloud"></div>
+		    </div>
+		    <div class="x2">
+		        <div class="cloud"></div>
+		    </div>
+		    <div class="x3">
+		        <div class="cloud"></div>
+		    </div>
+		    <div class="x4">
+		        <div class="cloud"></div>
+	    	</div>
+    	</div>
 		<div class="game-board">
 			<div id="square-zero" class="board-square" onclick="playSquare(0, 'square-zero')"></div>
 			<div id="square-one" class="board-square" onclick="playSquare(1, 'square-one')"></div>
@@ -19,24 +34,14 @@
 			<div id="square-seven" class="board-square" onclick="playSquare(7, 'square-seven')"></div>
 			<div id="square-eight" class="board-square" onclick="playSquare(8, 'square-eight')"></div>
 		<div>
-		<ul>
+		<div class="landscape">
+			<div>
+		</div>
+<!-- 		<ul>
 			<li>Player One: <span id="player-one-wins">0</span></li>
 			<li>Player Two: <span id="player-two-wins">0</span></li>
 			<li>Cat Games: <span id="ties">0</span></li>
-		</ul>
-<!-- 		<table>
-			<thead><td></td><td>Record</td><td></td></thead>
-			<tr>
-				<td>Ties</td>
-				<td>Player One Wins</td>
-				<td>Player Two Wins</td>
-			</tr>
-			<tr>
-				<td id="ties">0</td>
-				<td id="player-one-wins">0</td>
-				<td id="player-two-wins">0</td>
-			</tr>
-		</table> -->
+		</ul> -->
 	</body>
 	<script type="text/javascript" src="js/ttt.js"></script>
 </html>
