@@ -1,0 +1,24 @@
+<!-- ************************* ANGULAR VERSION ************************* -->
+
+<!DOCTYPE = html>
+<html lang = "en">
+	<head>
+		<title>Tic Tac Toe</title>
+		<link rel="stylesheet" type="text/css" href="css/angular-ttt.css">
+		<meta name = "description" content = "Fancy a game of Tic Tac Toe?">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/gamecontroller.js"></script>
+	</head>
+	<body ng-app="gameApp">
+		<section ng-controller="GameController as gc">
+				<div class="game-board">
+					<div class="board-square" ng-class="playerStyle" ng-repeat="square in gc.board" ng-click="playerStyle = gc.currentPlayer; gc.playSquare(gc.currentPlayer, $index)"></div>
+				</div>
+				<p>Current Player: {{gc.currentPlayer}}</p>
+				<p>Score: {{gc.scoreBoard}}</p>
+		</section>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+body {
+	background: linear-gradient( 0deg, #D9D5B8, #53BEEA 30%, #0061A0 );
+/*	overflow-x: hidden;*/
+	color: black;
+}
+
+.game-board {
+ 	float: right;
+  	position: relative;
+  	left: -50%; /* or right 50% */
+  	top: 100px;
+  	text-align: left;
+}
+
+.board-square {
+	width: 160px;
+	height: 160px;
+	background-color: #ecf0f1;
+	color: black;
+	float: left;
+	margin: 8px;
+	position: relative;
+	left: 50%;
+}
+
+.board-square:nth-child(3n+1) {
+	clear: both;
+}
+
+.player-one {
+	background-color: blue;
+}
+
+.player-two {
+	background-color: red;
+}
+
+
+
+.fade {
+    transition: opacity 10s ease-in-out;
+    -webkit-transition: opacity 10s ease-in-out;
+    -moz-transition: opacity 10s ease-in-out;
+    -ms-transition: opacity 10s ease-in-out;
+    -o-transition: opacity 10s ease-in-out;
+     opacity: 0;
+}

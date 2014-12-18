@@ -1,0 +1,50 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf160
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww13000\viewh14840\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 \
+GET PLAYERS\
+get two players\
+host starts first, then starting player alternates.\
+\
+\
+PLAY GAME\
+each player takes a turn playing a mark on a square\
+	player can only make play on a square that does not have a mark\
+	player 1 mark changes array value to 1. player 2 mark changes array to 2\
+\
+\
+OUTCOME\
+	once one player\'92s marks go three across, three down or three diagonally, that players wins.\
+	OR\
+	if all squares have a value != to 0, draw. end game\
+(if \'930\'94 exists in array, keep playing. if \'930\'94 does not exist in array\
+	Display outcome\
+	add outcome to scoreboard\
+	Display reset button\
+\
+\
+RESET\
+	reset array to it\'92s initial state.\
+	swap the player that starts the game\
+	player number stays the same\
+\
+\
+\
+array[0, 0 , 0, 0, 0, 0, 0, 0, 0]\
+\
+WINS in array\
+	ACROSS array pos [0, 1, 2], [3, 4, 5], [6, 7, 8]\
+		if board[0] == board[1] AND board [1] == board[2]\
+	DOWN array pos [0, 3, 6], [1, 4, 7], [2, 5, 8]\
+	DIAG array pos [0, 4, 8], [2, 4, 6]\
+		if board[0] == board[4] AND board [4] == board[8]\
+\
+BOARD\
+	pos1 = board[0]\
+	pos2 = board[1]\
+	etc\
+\
+}
