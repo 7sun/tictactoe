@@ -11,11 +11,21 @@ function GameController($firebase){
 	game.playCounter = 0;
 	game.scoreBoard = [0, 0, 0]; //[Ties, Player One Wins, Player Two Wins]
 	game.playSquare = playSquare;
-	game.board = [
-		{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0},
-		{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0},
-		{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0}
-	];
+	game.board = getGame();
+
+	function getGame() {
+		var ref = new Firebase('https://tttdb.firebaseio.com/board');
+		
+		ref.set([
+			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0},
+			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0},
+			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0}
+		]);
+
+		var gameboard = $firebase(ref).$asArray();
+		return gameboard;
+	}
+
 
 	function resetGame() {
 		game.board = [
@@ -54,6 +64,7 @@ function GameController($firebase){
 				console.log("no play available");
 			}
 		}
+		game.board.$save(square);
 	};
 
 	function changeTurn() {

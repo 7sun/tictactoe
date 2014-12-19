@@ -7,7 +7,7 @@ body {
 .game-board {
  	float: right;
   	position: relative;
-  	left: -50%; /* or right 50% */
+  	left: -50%;
   	top: 100px;
   	text-align: left;
 }
@@ -35,7 +35,9 @@ body {
 	background-color: red;
 }
 
-
+ul {
+	list-style: none;
+}
 
 .fade {
     transition: opacity 10s ease-in-out;

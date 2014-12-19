@@ -15,10 +15,14 @@
 	<body ng-app="gameApp">
 		<section ng-controller="GameController as gc">
 				<div class="game-board">
-					<div class="board-square" ng-class="playerStyle" ng-repeat="square in gc.board" ng-click="playerStyle = gc.currentPlayer; gc.playSquare(gc.currentPlayer, $index)"></div>
+					<div class="board-square" ng-class="{'player-one': square.owner==1, 'player-two': square.owner==2}" ng-repeat="square in gc.board" ng-click="gc.playSquare(gc.currentPlayer, $index)"></div>
 				</div>
 				<p>Current Player: {{gc.currentPlayer}}</p>
-				<p>Score: {{gc.scoreBoard}}</p>
+				<ul>
+					<li>{{gc.scoreBoard[1]}}: Blue Player Wins</li>
+					<li>{{gc.scoreBoard[2]}}: Red Player Wins</li>
+					<li>{{gc.scoreBoard[0]}}: Ties</li>
+				</ul>
 		</section>
 	</body>
 </html>
