@@ -14,14 +14,17 @@
 	</head>
 	<body ng-app="gameApp">
 		<section ng-controller="GameController as gc">
+				<button ng-click="gc.initialize()">Create New Game</button>
+				<button>Join as Player 1</button>
+				<button>Join as Player 2</button>
 				<div class="game-board">
-					<div class="board-square" ng-class="{'player-one': square.owner==1, 'player-two': square.owner==2}" ng-repeat="square in gc.board" ng-click="gc.playSquare(gc.currentPlayer, $index)"></div>
+					<div class="board-square" ng-class="{'player-one': square.owner==1, 'player-two': square.owner==2}" ng-repeat="square in gc.fbData.board" ng-click="gc.playSquare(gc.fbData.currentPlayer, $index)"></div>
 				</div>
-				<p>Current Player: {{gc.currentPlayer}}</p>
+				<p>Current Player: {{gc.fbData.currentPlayer}}</p>
 				<ul>
-					<li>{{gc.scoreBoard[1]}}: Blue Player Wins</li>
-					<li>{{gc.scoreBoard[2]}}: Red Player Wins</li>
-					<li>{{gc.scoreBoard[0]}}: Ties</li>
+					<li>{{gc.fbData.scoreBoard[1]}}: Blue Player Wins</li>
+					<li>{{gc.fbData.scoreBoard[2]}}: Red Player Wins</li>
+					<li>{{gc.fbData.scoreBoard[0]}}: Ties</li>
 				</ul>
 		</section>
 	</body>
