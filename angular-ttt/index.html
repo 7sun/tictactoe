@@ -15,8 +15,8 @@
 	<body ng-app="gameApp">
 		<section ng-controller="GameController as gc">
 				<button ng-click="gc.initialize()">Create New Game</button>
-				<button>Join as Player 1</button>
-				<button>Join as Player 2</button>
+<!-- 				<button>Join as Player 1</button> -->
+				<button ng-click="gc.joinGame()">Join as Player 2</button>
 				<div class="game-board">
 					<div class="board-square" ng-class="{'player-one': square.owner==1, 'player-two': square.owner==2}" ng-repeat="square in gc.fbData.board" ng-click="gc.playSquare(gc.fbData.currentPlayer, $index)"></div>
 				</div>

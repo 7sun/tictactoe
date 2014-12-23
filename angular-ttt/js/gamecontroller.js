@@ -8,19 +8,18 @@ function GameController($firebase){
 
 	var game = this;
 	var ref = new Firebase('https://tttdb.firebaseio.com/gamedata');
-
-	// game.startingPlayer = "player-one";
-	// game.currentPlayer = "player-one";
-	// game.scoreBoard = [0, 0, 0];
-	// game.playCounter = 0;
+	game.user;
 	game.fbData;
 	game.playSquare = playSquare;
 	game.initialize = initialize;
+	game.joinGame = joinGame;
 	game.gameData = {
 		startingPlayer: "player-one",
 		currentPlayer: "player-one",
 		scoreBoard: [0,0,0],
 		playCounter: 0,
+		// hostPlayer: "",
+		// guestPlayer: "",
 		board: [
 			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0},
 			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0},
@@ -28,18 +27,18 @@ function GameController($firebase){
 			]
 		};
 
-	// game.fbData.board = getGame();
-
 	function initialize() {
 		ref.set(game.gameData);
 		game.fbData = $firebase(ref).$asObject();
+		game.user = "player-one"
 		return game.fbData;
 	};
 
-	// function getGame() {
-	// 	var newBoard = game.fbData.board;
-	// 	return newBoard;
-	// };
+	function joinGame() {
+		game.fbData = $firebase(ref).$asObject();
+		game.user = "player-two"
+		return game.fbData;
+	};
 
 	function resetGame() {
 		game.fbData.board = [
@@ -55,7 +54,7 @@ function GameController($firebase){
 	function playSquare(player, i) {
 		var square = game.fbData.board[i];
 		console.log(square)
-		if (player == "player-one"){
+		if (player == "player-one" && game.user == "player-one"){
 			if (square.owner == 0){
 				square.owner = 1;
 				game.fbData.playCounter += 1;
@@ -67,7 +66,7 @@ function GameController($firebase){
 				console.log("no play available");
 			}
 		}
-		else if (player == "player-two"){
+		else if (player == "player-two" && game.user == "player-two"){
 			if (square.owner == 0){
 				square.owner = 2;
 				game.fbData.playCounter += 1;
