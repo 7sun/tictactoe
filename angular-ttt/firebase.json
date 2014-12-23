@@ -1,0 +1,9 @@
+{
+  "firebase": "tttdb",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

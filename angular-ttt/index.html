@@ -4,7 +4,10 @@
 <html lang = "en">
 	<head>
 		<title>Tic Tac Toe</title>
+		<link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:200' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/angular-ttt.css">
+		<link rel="stylesheet" type="text/css" href="css/angular-clouds.css">
 		<meta name = "description" content = "Fancy a game of Tic Tac Toe?">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
 		<script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
@@ -13,19 +16,42 @@
 		<script src="js/gamecontroller.js"></script>
 	</head>
 	<body ng-app="gameApp">
+		<div id="background-wrap">
+		    <div class="x1">
+		        <div class="cloud"></div>
+		    </div>
+		    <div class="x2">
+		        <div class="cloud"></div>
+		    </div>
+		    <div class="x3">
+		        <div class="cloud"></div>
+		    </div>
+		    <div class="x4">
+		        <div class="cloud"></div>
+	    	</div>
+    	</div>
 		<section ng-controller="GameController as gc">
-				<button ng-click="gc.initialize()">Create New Game</button>
-<!-- 				<button>Join as Player 1</button> -->
-				<button ng-click="gc.joinGame()">Join as Player 2</button>
+				<div ng-hide="gc.user == 'player-one' || gc.user == 'player-two'">
+					<h1>Tic Tac Toe</h1>
+					<button ng-click="gc.initialize()">New Game</button>
+					<button ng-click="gc.joinGame()">Join Game</button>
+				</div>
 				<div class="game-board">
 					<div class="board-square" ng-class="{'player-one': square.owner==1, 'player-two': square.owner==2}" ng-repeat="square in gc.fbData.board" ng-click="gc.playSquare(gc.fbData.currentPlayer, $index)"></div>
 				</div>
-				<p>Current Player: {{gc.fbData.currentPlayer}}</p>
-				<ul>
+				<div ng-show="gc.user == 'player-one' || gc.user == 'player-two'" class="v-line">
+				</div>
+				<div ng-show="gc.user == 'player-one' || gc.user == 'player-two'" class="v-line bottom">
+				</div>
+				<div ng-show="gc.user == 'player-one' || gc.user == 'player-two'" class="h-line">
+				</div>
+				<div ng-show="gc.user == 'player-one' || gc.user == 'player-two'" class="h-line right">
+				</div>
+<!-- 				<ul>
 					<li>{{gc.fbData.scoreBoard[1]}}: Blue Player Wins</li>
 					<li>{{gc.fbData.scoreBoard[2]}}: Red Player Wins</li>
 					<li>{{gc.fbData.scoreBoard[0]}}: Ties</li>
-				</ul>
+				</ul> -->
 		</section>
 	</body>
 </html>

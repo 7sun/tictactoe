@@ -40,9 +40,9 @@
 /* ANIMATIONS */
 
 .x1 {
-	-webkit-animation: animateCloud 70s linear infinite;
-	-moz-animation: animateCloud 70s linear infinite;
-	animation: animateCloud 70s linear infinite;
+	-webkit-animation: animateCloud 90s linear infinite;
+	-moz-animation: animateCloud 90s linear infinite;
+	animation: animateCloud 90s linear infinite;
 	
 	-webkit-transform: scale(0.65);
 	-moz-transform: scale(0.65);
@@ -50,9 +50,9 @@
 }
 
 .x2 {
-	-webkit-animation: animateCloud 40s linear infinite;
-	-moz-animation: animateCloud 40s linear infinite;
-	animation: animateCloud 40s linear infinite;
+	-webkit-animation: animateCloud 60s linear infinite;
+	-moz-animation: animateCloud 60s linear infinite;
+	animation: animateCloud 60s linear infinite;
 	
 	-webkit-transform: scale(0.3);
 	-moz-transform: scale(0.3);
@@ -60,9 +60,9 @@
 }
 
 .x3 {
-	-webkit-animation: animateCloud 60s linear infinite;
-	-moz-animation: animateCloud 60s linear infinite;
-	animation: animateCloud 60s linear infinite;
+	-webkit-animation: animateCloud 80s linear infinite;
+	-moz-animation: animateCloud 80s linear infinite;
+	animation: animateCloud 80s linear infinite;
 	
 	-webkit-transform: scale(0.5);
 	-moz-transform: scale(0.5);
@@ -70,9 +70,9 @@
 }
 
 .x4 {
-	-webkit-animation: animateCloud 36s linear infinite;
-	-moz-animation: animateCloud 36s linear infinite;
-	animation: animateCloud 36s linear infinite;
+	-webkit-animation: animateCloud 56s linear infinite;
+	-moz-animation: animateCloud 56s linear infinite;
+	animation: animateCloud 56s linear infinite;
 	
 	-webkit-transform: scale(0.4);
 	-moz-transform: scale(0.4);
@@ -80,9 +80,9 @@
 }
 
 .x5 {
-	-webkit-animation: animateCloud 50s linear infinite;
-	-moz-animation: animateCloud 50s linear infinite;
-	animation: animateCloud 50s linear infinite;
+	-webkit-animation: animateCloud 70s linear infinite;
+	-moz-animation: animateCloud 70s linear infinite;
+	animation: animateCloud 70s linear infinite;
 	
 	-webkit-transform: scale(0.55);
 	-moz-transform: scale(0.55);

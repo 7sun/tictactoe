@@ -1,7 +1,63 @@
 body {
 	background: linear-gradient( 0deg, #D9D5B8, #53BEEA 30%, #0061A0 );
-/*	overflow-x: hidden;*/
+	overflow-x: hidden;
 	color: white;
+	font-family: 'Bangers', cursive;
+}
+
+h1 {
+	font-size: 128px;
+	text-align: center;
+	margin-top: 100px;
+	margin-bottom: 30px;
+	text-shadow: 4px 4px 0px #333;
+}
+
+button {
+	background-color: transparent;
+	border: none;
+	width: 180px;
+	height: 60px;
+	font-size: 36px;
+	font-family: 'Bangers', cursive;
+	text-align: center;
+	text-shadow: 1px 1px 0px #333;
+	margin: 10px auto;
+	display: block;
+	color: #FFF;
+
+}
+
+button:hover {
+	color: #D71716;
+}
+
+.v-line {
+	background-color: #FFF;
+	width: 544px;
+	height: 5px;
+	position: relative;
+	top: 290px;
+	margin: 0 auto;
+}
+
+.bottom {
+		top: 478px;
+}
+
+.h-line {
+	background-color: #FFF;
+	width: 5px;
+	height: 544px;
+	position: relative;
+	top: 106px;
+	left: -97px;
+	margin: 0 auto;
+}
+
+.right {
+	top: -438px;
+	left: 95px;
 }
 
 .game-board {
@@ -15,12 +71,17 @@ body {
 .board-square {
 	width: 160px;
 	height: 160px;
-	background-color: #ecf0f1;
+	background-color: transparent;
 	color: black;
 	float: left;
-	margin: 8px;
+	margin: 16px;
 	position: relative;
 	left: 50%;
+}
+
+.board-square:hover {
+	background-color: #DDD;
+	opacity: .3;
 }
 
 .board-square:nth-child(3n+1) {
@@ -45,5 +106,5 @@ ul {
     -moz-transition: opacity 10s ease-in-out;
     -ms-transition: opacity 10s ease-in-out;
     -o-transition: opacity 10s ease-in-out;
-     opacity: 0;
+    opacity: 0;
 }
