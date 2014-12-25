@@ -53,7 +53,6 @@ function GameController($firebase){
 
 	function playSquare(player, i) {
 		var square = game.fbData.board[i];
-		console.log(square)
 		if (player == "player-one" && game.user == "player-one"){
 			if (square.owner == 0){
 				square.owner = 1;
