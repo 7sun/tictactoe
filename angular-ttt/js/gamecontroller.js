@@ -14,8 +14,8 @@ function GameController($firebase){
 	game.initialize = initialize;
 	game.joinGame = joinGame;
 	game.gameData = {
-		startingPlayer: "player-one",
-		currentPlayer: "player-one",
+		startingPlayer: "Player One",
+		currentPlayer: "Player One",
 		scoreBoard: [0,0,0],
 		playCounter: 0,
 		// hostPlayer: "",
@@ -30,13 +30,13 @@ function GameController($firebase){
 	function initialize() {
 		ref.set(game.gameData);
 		game.fbData = $firebase(ref).$asObject();
-		game.user = "player-one"
+		game.user = "Player One"
 		return game.fbData;
 	};
 
 	function joinGame() {
 		game.fbData = $firebase(ref).$asObject();
-		game.user = "player-two"
+		game.user = "Player Two"
 		return game.fbData;
 	};
 
@@ -53,7 +53,7 @@ function GameController($firebase){
 
 	function playSquare(player, i) {
 		var square = game.fbData.board[i];
-		if (player == "player-one" && game.user == "player-one"){
+		if (player == "Player One" && game.user == "Player One"){
 			if (square.owner == 0){
 				square.owner = 1;
 				game.fbData.playCounter += 1;
@@ -65,7 +65,7 @@ function GameController($firebase){
 				console.log("no play available");
 			}
 		}
-		else if (player == "player-two" && game.user == "player-two"){
+		else if (player == "Player Two" && game.user == "Player Two"){
 			if (square.owner == 0){
 				square.owner = 2;
 				game.fbData.playCounter += 1;
@@ -81,11 +81,11 @@ function GameController($firebase){
 	};
 
 	function changeTurn() {
-		game.fbData.currentPlayer = (game.fbData.currentPlayer == "player-one" ? "player-two" : "player-one");
+		game.fbData.currentPlayer = (game.fbData.currentPlayer == "Player One" ? "Player Two" : "Player One");
 	};
 
 	function changeStartingPlayer() {
-		game.fbData.startingPlayer = (game.fbData.startingPlayer == "player-one" ? "player-two" : "player-one");
+		game.fbData.startingPlayer = (game.fbData.startingPlayer == "Player One" ? "Player Two" : "Player One");
 	};
 
 	function outcome(playerNum){
