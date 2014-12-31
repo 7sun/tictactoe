@@ -1,8 +1,10 @@
 body {
 	background: linear-gradient( 0deg, #D9D5B8, #53BEEA 30%, #0061A0 );
+	background-attachment: fixed;
 	overflow-x: hidden;
 	color: white;
 	font-family: 'Bangers', cursive;
+	margin: 0;
 }
 
 h1 {
@@ -104,6 +106,12 @@ button:hover {
 
 .game-header {
 	text-align: center;
+	margin-bottom: -126px;
+	position: relative;
+}
+
+.game-display {
+	height: 360px;
 }
 
 .player-one-score {
@@ -139,4 +147,141 @@ div p {
     -ms-transition: opacity 10s ease-in-out;
     -o-transition: opacity 10s ease-in-out;
     opacity: 0;
+}
+
+.ground {
+	height: 109px;
+	width: 100%;
+	background: #E6A766;
+	background: linear-gradient(to right, #E2B98D, #E79855);
+}
+
+
+.c1 {
+	position: relative;
+	right: 0px;
+	top: -110px;
+	transform: scale(0.8);
+}
+
+.c2 {
+	position: relative;
+	right: -284px;
+	top: -201px;
+	transform: scale(0.5);
+}
+
+.c3 {
+	position: relative;
+	right: -284px;
+	top: -204px;
+}
+
+.c4 {
+	position: relative;
+	right: -620;
+	top: -300px;
+	transform: scale(0.7);
+}
+
+.c5 {
+	position: relative;
+	right: -1100px;
+	top: -346px;
+	transform: scale(0.9);
+}
+
+.cactus {
+	height: 60px;
+	width: 8px;
+	background: green;
+	border-radius: 5px;
+	position: relative;
+	box-shadow: 0 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.cactus-right-arm {
+	height: 7px;
+	width: 14px;
+	background: green;
+	left: 5px;
+	top: 21px;
+	position: absolute;
+	border-radius: 5px;
+}
+
+.cactus-right-arm:after {
+	height: 20px;
+	width: 7px;
+	background: green;
+	left: 10px;
+	top: -13px;
+	position: absolute;
+	content: '';
+	border-radius: 5px;
+}
+
+.cactus-left-arm {
+	height: 7px;
+	width: 14px;
+	background: green;
+	left: -11px;
+	top: 27px;
+	position: absolute;
+	border-radius: 5px;
+}
+
+.cactus-left-arm:after {
+	height: 20px;
+	width: 7px;
+	background: green;
+	left: 0px;
+	top: -14px;
+	position: absolute;
+	content: '';
+	border-radius: 5px;
+}
+
+
+.hill {
+	height: 100px;
+	width: 200px;
+	background: #E2B98D;
+	border-radius: 41%;
+	position: relative;
+	top: 275px;
+	left: -10;
+	transform: rotate(8deg);
+	z-index: -1;
+}
+
+.mesa {
+	height: 100px;
+	width: 400px;
+	background: sienna;
+	border-radius: 44%;
+	position: relative;
+	top: 180px;
+	left: 849px;
+	transform: rotate(8deg);
+	z-index: -1;
+}
+
+.mountain {
+	height: 100px;
+	width: 300;
+	background: sienna;
+	border-radius: 31%;
+	position: relative;
+	top: 60px;
+	left: 1131px;
+	transform: rotate(9deg);
+	z-index: -1;
+}
+
+footer {
+	position: relative;
+	width: 100%;
+	bottom: 0;
+	height: 0px;
 }
