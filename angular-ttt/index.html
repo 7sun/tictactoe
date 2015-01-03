@@ -34,35 +34,39 @@
 		    	</div>
 	    	</div>
 			<section ng-controller="GameController as gc">
-					<div ng-hide="gc.user != undefined">
-						<h1>Tic Tac Toe</h1>
-						<button ng-click="gc.initialize()">New Game</button>
-						<button ng-click="gc.joinGame()">Join Game</button>
+				<div ng-hide="gc.user != undefined">
+					<h1>Tic Tac Toe</h1>
+					<button ng-click="gc.initialize()">New Game</button>
+					<button ng-click="gc.joinGame()">Join Game</button>
+				</div>
+				<div class="game-header" ng-show="gc.user != undefined">
+					<div class="player-one-score">
+						<p ng-class="{'turn-select': gc.fbData.currentPlayer=='Player One'}">Player One</p>
+						<p>{{gc.fbData.scoreBoard[1]}}</p>
 					</div>
-					<div class="game-header" ng-show="gc.user != undefined">
-						<div class="player-one-score">
-							<p ng-class="{'turn-select': gc.fbData.currentPlayer=='Player One'}">Player One</p>
-							<p>{{gc.fbData.scoreBoard[1]}}</p>
-						</div>
-						<div class="player-two-score" >
-							<p ng-class="{'turn-select': gc.fbData.currentPlayer=='Player Two'}">Player Two</p>
-							<p>{{gc.fbData.scoreBoard[2]}}</p>
-						</div>
+					<div class="player-two-score" >
+						<p ng-class="{'turn-select': gc.fbData.currentPlayer=='Player Two'}">Player Two</p>
+						<p>{{gc.fbData.scoreBoard[2]}}</p>
 					</div>
-					<div class="game-board">
-						<div class="board-square" ng-style="hoverstyle" ng-class="{'player-one': square.owner==1, 'player-two': square.owner==2}" ng-repeat="square in gc.fbData.board" ng-click="gc.playSquare(gc.fbData.currentPlayer, $index)"></div>
+				</div>
+				<div class="game-board">
+					<div class="board-square" ng-class="{'player-one': square.owner==1, 'player-two': square.owner==2}" ng-repeat="square in gc.fbData.board" ng-click="gc.playSquare(gc.fbData.currentPlayer, $index)">
 					</div>
-					<div class="game-display" ng-show="gc.user != undefined">
-						<div class="line vertical"></div>
-						<div class="line vertical bottom"></div>
-						<div class="horizontal line"></div>
-						<div class="horizontal line right"></div>
-					</div>
-	<!-- 				<ul>
-						<li>{{gc.fbData.scoreBoard[1]}}: Blue Player Wins</li>
-						<li>{{gc.fbData.scoreBoard[2]}}: Red Player Wins</li>
-						<li>{{gc.fbData.scoreBoard[0]}}: Ties</li>
-					</ul> -->
+				</div>
+				<div class="game-display" ng-show="gc.user != undefined">
+					<div class="line vertical"></div>
+					<div class="line vertical bottom"></div>
+					<div class="horizontal line"></div>
+					<div class="horizontal line right"></div>
+				</div>
+				<div class="winner">
+					<h2 ng-show="gc.fbData.winner != undefined">{{gc.fbData.winner}}</h2>
+<!-- 				<ul>
+					<li>{{gc.fbData.scoreBoard[1]}}: Blue Player Wins</li>
+					<li>{{gc.fbData.scoreBoard[2]}}: Red Player Wins</li>
+					<li>{{gc.fbData.scoreBoard[0]}}: Ties</li>
+				</ul> -->
+				</div>
 			</section>
 			<footer>
 				<div class="hill"></div>

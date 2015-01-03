@@ -18,6 +18,7 @@ function GameController($firebase){
 		currentPlayer: "Player One",
 		scoreBoard: [0,0,0],
 		playCounter: 0,
+		winner: "",
 		// hostPlayer: "",
 		// guestPlayer: "",
 		board: [
@@ -47,6 +48,7 @@ function GameController($firebase){
 			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0}
 			]
 		game.fbData.playCounter = 0;
+		game.fbData.winner = "";
 		changeStartingPlayer();
 		game.fbData.$save();
 	};
@@ -90,51 +92,51 @@ function GameController($firebase){
 
 	function outcome(playerNum){
 		if (game.fbData.board[0].owner == playerNum && game.fbData.board[0].owner == game.fbData.board[1].owner && game.fbData.board[1].owner == game.fbData.board[2].owner){
-			alert("Player " + playerNum + " wins!");
+			game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 1000);
+			setTimeout(function() { resetGame(); }, 3000);
 		}
 
 		else if (game.fbData.board[3].owner == playerNum && game.fbData.board[3].owner == game.fbData.board[4].owner && game.fbData.board[4].owner == game.fbData.board[5].owner){
-			alert("Player " + playerNum + " wins!");
+			game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 1000);
+			setTimeout(function() { resetGame(); }, 3000);
 		}
 
 		else if (game.fbData.board[6].owner == playerNum && game.fbData.board[6].owner == game.fbData.board[7].owner && game.fbData.board[7].owner == game.fbData.board[8].owner){
-			alert("Player " + playerNum + " wins!");
+			game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 1000);
+			setTimeout(function() { resetGame(); }, 3000);
 		}
 
 		else if (game.fbData.board[0].owner == playerNum && game.fbData.board[0].owner == game.fbData.board[3].owner && game.fbData.board[3].owner == game.fbData.board[6].owner){
-			alert("Player " + playerNum + " wins!");
+			game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 1000);
+			setTimeout(function() { resetGame(); }, 3000);
 		}
 
 		else if (game.fbData.board[1].owner == playerNum && game.fbData.board[1].owner == game.fbData.board[4].owner && game.fbData.board[4].owner == game.fbData.board[7].owner){
-			alert("Player " + playerNum + " wins!");
+			game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 1000);
+			setTimeout(function() { resetGame(); }, 3000);
 		}
 
 		else if (game.fbData.board[2].owner == playerNum && game.fbData.board[2].owner == game.fbData.board[5].owner && game.fbData.board[5].owner == game.fbData.board[8].owner){
-			alert("Player " + playerNum + " wins!");
+			game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 1000);
+			setTimeout(function() { resetGame(); }, 3000);
 		}
 
 		else if (game.fbData.board[0].owner == playerNum && game.fbData.board[0].owner == game.fbData.board[4].owner && game.fbData.board[4].owner == game.fbData.board[8].owner){
-			alert("Player " + playerNum + " wins!");
+			game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 1000);
+			setTimeout(function() { resetGame(); }, 3000);
 		}
 
 		else if (game.fbData.board[2].owner == playerNum && game.fbData.board[2].owner == game.fbData.board[4].owner && game.fbData.board[4].owner == game.fbData.board[6].owner){
-			alert("Player " + playerNum + " wins!");
+			game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 1000);
+			setTimeout(function() { resetGame(); }, 3000);
 		}
 
 		else {

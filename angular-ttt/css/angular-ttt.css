@@ -15,6 +15,12 @@ body {
 	overflow-x: hidden;
 }
 
+.gray {
+	background-color: gray;
+	opacity: 0.8;
+}
+/*style to gray out bg when a winner is announced*/
+
 section {
 	min-height: 720px;
 }
@@ -29,9 +35,20 @@ footer {
 h1 {
 	font-size: 128px;
 	text-align: center;
-	margin-top: 40px;
+	margin-top: 0px;
 	margin-bottom: 30px;
+	padding-top: 90px;
 	text-shadow: 4px 4px 0px #333;
+}
+
+h2 {
+	text-align: center;
+	position: relative;
+	top: -170px;
+	left: 286px;
+	font-size: 72px;
+	white-space: nowrap;
+	color: black;
 }
 
 button {
@@ -43,7 +60,7 @@ button {
 	font-family: 'Bangers', cursive;
 	text-align: center;
 	text-shadow: 1px 1px 0px #333;
-	margin: 10px auto;
+	margin: 10px auto 0px;
 	display: block;
 	color: #FFF;
 }
