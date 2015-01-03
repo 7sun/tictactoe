@@ -15,89 +15,91 @@
 		<script src="js/gamecontroller.js"></script>
 	</head>
 	<body ng-app="gameApp">
-		<div id="background-wrap">	
-		    <div class="x1">
-		        <div class="cloud"></div>
-		    </div>
-		    <div class="x2">
-		        <div class="cloud"></div>
-		    </div>
-		    <div class="x3">
-		        <div class="cloud"></div>
-		    </div>
-		    <div class="x4">
-		        <div class="cloud"></div>
+		<div id="wrapper">
+			<div id="clouds">	
+			    <div class="x1">
+			        <div class="cloud"></div>
+			    </div>
+			    <div class="x2">
+			        <div class="cloud"></div>
+			    </div>
+			    <div class="x3">
+			        <div class="cloud"></div>
+			    </div>
+			    <div class="x4">
+			        <div class="cloud"></div>
+		    	</div>
+		    	<div class="x5">
+			        <div class="cloud"></div>
+		    	</div>
 	    	</div>
-	    	<div class="x5">
-		        <div class="cloud"></div>
-	    	</div>
-    	</div>
-		<section ng-controller="GameController as gc">
-				<div ng-hide="gc.user != undefined">
-					<h1>Tic Tac Toe</h1>
-					<button ng-click="gc.initialize()">New Game</button>
-					<button ng-click="gc.joinGame()">Join Game</button>
-				</div>
-				<div class="game-header" ng-show="gc.user != undefined">
-					<div class="player-one-score">
-						<p ng-class="{'turn-select': gc.fbData.currentPlayer=='Player One'}">Player One</p>
-						<p>{{gc.fbData.scoreBoard[1]}}</p>
+			<section ng-controller="GameController as gc">
+					<div ng-hide="gc.user != undefined">
+						<h1>Tic Tac Toe</h1>
+						<button ng-click="gc.initialize()">New Game</button>
+						<button ng-click="gc.joinGame()">Join Game</button>
 					</div>
-					<div class="player-two-score" >
-						<p ng-class="{'turn-select': gc.fbData.currentPlayer=='Player Two'}">Player Two</p>
-						<p>{{gc.fbData.scoreBoard[2]}}</p>
+					<div class="game-header" ng-show="gc.user != undefined">
+						<div class="player-one-score">
+							<p ng-class="{'turn-select': gc.fbData.currentPlayer=='Player One'}">Player One</p>
+							<p>{{gc.fbData.scoreBoard[1]}}</p>
+						</div>
+						<div class="player-two-score" >
+							<p ng-class="{'turn-select': gc.fbData.currentPlayer=='Player Two'}">Player Two</p>
+							<p>{{gc.fbData.scoreBoard[2]}}</p>
+						</div>
+					</div>
+					<div class="game-board">
+						<div class="board-square" ng-style="hoverstyle" ng-class="{'player-one': square.owner==1, 'player-two': square.owner==2}" ng-repeat="square in gc.fbData.board" ng-click="gc.playSquare(gc.fbData.currentPlayer, $index)"></div>
+					</div>
+					<div class="game-display" ng-show="gc.user != undefined">
+						<div class="line vertical"></div>
+						<div class="line vertical bottom"></div>
+						<div class="horizontal line"></div>
+						<div class="horizontal line right"></div>
+					</div>
+	<!-- 				<ul>
+						<li>{{gc.fbData.scoreBoard[1]}}: Blue Player Wins</li>
+						<li>{{gc.fbData.scoreBoard[2]}}: Red Player Wins</li>
+						<li>{{gc.fbData.scoreBoard[0]}}: Ties</li>
+					</ul> -->
+			</section>
+			<footer>
+				<div class="hill"></div>
+				<div class="mesa"></div>
+				<div class="mountain"></div>
+				<div class="ground"></div>
+				<div class="c1">
+					<div class="cactus">
+						<div class="cactus-right-arm"></div>
+						<div class="cactus-left-arm"></div>
 					</div>
 				</div>
-				<div class="game-board">
-					<div class="board-square" ng-style="hoverstyle" ng-class="{'player-one': square.owner==1, 'player-two': square.owner==2}" ng-repeat="square in gc.fbData.board" ng-click="gc.playSquare(gc.fbData.currentPlayer, $index)"></div>
+				<div class="c2">
+					<div class="cactus">
+						<div class="cactus-right-arm"></div>
+						<div class="cactus-left-arm"></div>
+					</div>
 				</div>
-				<div class="game-display" ng-show="gc.user != undefined">
-					<div class="v-line"></div>
-					<div class="v-line bottom"></div>
-					<div class="h-line"></div>
-					<div class="h-line right"></div>
+				<div class="c3">
+					<div class="cactus">
+						<div class="cactus-right-arm"></div>
+						<div class="cactus-left-arm"></div>
+					</div>
 				</div>
-<!-- 				<ul>
-					<li>{{gc.fbData.scoreBoard[1]}}: Blue Player Wins</li>
-					<li>{{gc.fbData.scoreBoard[2]}}: Red Player Wins</li>
-					<li>{{gc.fbData.scoreBoard[0]}}: Ties</li>
-				</ul> -->
-		</section>
-		<footer>
-			<div class="hill"></div>
-			<div class="mesa"></div>
-			<div class="mountain"></div>
-			<div class="ground"></div>
-			<div class="c1">
-				<div class="cactus">
-					<div class="cactus-right-arm"></div>
-					<div class="cactus-left-arm"></div>
+				<div class="c4">
+					<div class="cactus">
+						<div class="cactus-right-arm"></div>
+						<div class="cactus-left-arm"></div>
+					</div>
 				</div>
-			</div>
-			<div class="c2">
-				<div class="cactus">
-					<div class="cactus-right-arm"></div>
-					<div class="cactus-left-arm"></div>
+				<div class="c5">
+					<div class="cactus">
+						<div class="cactus-right-arm"></div>
+						<div class="cactus-left-arm"></div>
+					</div>
 				</div>
-			</div>
-			<div class="c3">
-				<div class="cactus">
-					<div class="cactus-right-arm"></div>
-					<div class="cactus-left-arm"></div>
-				</div>
-			</div>
-			<div class="c4">
-				<div class="cactus">
-					<div class="cactus-right-arm"></div>
-					<div class="cactus-left-arm"></div>
-				</div>
-			</div>
-			<div class="c5">
-				<div class="cactus">
-					<div class="cactus-right-arm"></div>
-					<div class="cactus-left-arm"></div>
-				</div>
-			</div>
-		</footer>
+			</footer>
+		</div>
 	</body>
 </html>

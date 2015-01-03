@@ -1,35 +1,17 @@
-/***********GENERAL***********/
 body {
 	background: linear-gradient( 0deg, #D9D5B8, #53BEEA 30%, #0061A0 );
-/*	background-attachment: fixed;*/
+	background-attachment: fixed;
 	overflow-x: hidden;
 	color: white;
 	font-family: 'Bangers', cursive;
 	margin: 0;
-	padding: 0;
-}
-
-#wrapper {
-	min-height: 100%;
-	position: relative;
-	overflow-x: hidden;
-}
-
-section {
-	min-height: 720px;
-}
-
-footer {
-	position: relative;
 	width: 100%;
-	bottom: 0;
-	height: 110px;
 }
 
 h1 {
 	font-size: 128px;
 	text-align: center;
-	margin-top: 40px;
+	margin-top: 100px;
 	margin-bottom: 30px;
 	text-shadow: 4px 4px 0px #333;
 }
@@ -46,39 +28,36 @@ button {
 	margin: 10px auto;
 	display: block;
 	color: #FFF;
+
 }
 
 button:hover {
 	color: tomato;
-	cursor: pointer;
 }
 
-
-
-
-/***********GAME BOARD***********/
-
-.line {
+.v-line {
 	background-color: gainsboro;
-	position: relative;
-	margin: 0 auto;
-}
-
-.vertical {
 	width: 544px;
 	height: 5px;
+	position: relative;
 	top: 190px;
+	margin: 0 auto;
+/*	box-shadow: 1px 1px 0px #333;*/
 }
 
 .bottom {
 	top: 378px;
 }
 
-.horizontal {
+.h-line {
+	background-color: gainsboro;
 	width: 5px;
 	height: 544px;
+	position: relative;
 	top: 6px;
 	left: -97px;
+	margin: 0 auto;
+/*	box-shadow: 1px 1px 0px #333;*/
 }
 
 .right {
@@ -86,17 +65,11 @@ button:hover {
 	left: 95px;
 }
 
-.game-display {
-	height: 360px;
-	padding-top: 20px;
-}
-
 .game-board {
  	float: right;
   	position: relative;
   	left: -50%;
   	text-align: left;
-  	padding-top: 20px;
 }
 
 .board-square {
@@ -113,7 +86,6 @@ button:hover {
 .board-square:hover {
 	background-color: #DDD;
 	opacity: .5;
-	cursor: pointer;
 }
 
 .board-square:nth-child(3n+1) {
@@ -133,12 +105,14 @@ button:hover {
 	background-position: center;
 }
 
-/***********GAME INFO***********/
-
 .game-header {
 	text-align: center;
 	margin-bottom: -126px;
 	position: relative;
+}
+
+.game-display {
+	height: 360px;
 }
 
 .player-one-score {
@@ -155,6 +129,10 @@ button:hover {
 	color: mediumturquoise;
 }
 
+ul {
+	list-style: none;
+}
+
 .turn-select {
 	border: 2px solid gainsboro;
 }
@@ -163,18 +141,14 @@ div p {
 	padding: 0 12px 0 8px
 }
 
-/*.fade {
+.fade {
     transition: opacity 10s ease-in-out;
     -webkit-transition: opacity 10s ease-in-out;
     -moz-transition: opacity 10s ease-in-out;
     -ms-transition: opacity 10s ease-in-out;
     -o-transition: opacity 10s ease-in-out;
     opacity: 0;
-}*/
-
-
-
-/***********BACKGROUND ART***********/
+}
 
 .ground {
 	height: 109px;
@@ -183,73 +157,38 @@ div p {
 	background: linear-gradient(to right, #E2B98D, #E79855);
 }
 
-.hill {
-	height: 100px;
-	width: 200px;
-	background: #E2B98D;
-	border-radius: 41%;
-	position: absolute;
-	top: -24px;
-	left: -10;
-	transform: rotate(8deg);
-	z-index: -1;
-}
-
-.mesa {
-	height: 100px;
-	width: 400px;
-	background: sienna;
-	border-radius: 44%;
-	position: absolute;
-	top: -20px;
-	left: 620px;
-	transform: rotate(8deg);
-	z-index: -1;
-}
-
-.mountain {
-	height: 100px;
-	width: 300;
-	background: sienna;
-	border-radius: 31%;
-	position: absolute;
-	top: -32px;
-	left: 900px;
-	transform: rotate(9deg);
-	z-index: -1;
-}
 
 .c1 {
-	position: absolute;
-	top: 10px;
-	left: 140px;
+	position: relative;
+	right: 0px;
+	top: -110px;
 	transform: scale(0.8);
 }
 
 .c2 {
-	position: absolute;
-	top: -23px;
-	left: 580;
+	position: relative;
+	right: -284px;
+	top: -201px;
 	transform: scale(0.5);
 }
 
 .c3 {
-	position: absolute;
-	top: 37px;
-	left: 300px;
+	position: relative;
+	right: -284px;
+	top: -204px;
 }
 
 .c4 {
-	position: absolute;
-	top: -3px;
-	left: 862px;
+	position: relative;
+	right: -620;
+	top: -300px;
 	transform: scale(0.7);
 }
 
 .c5 {
-	position: absolute;
-	top: 18px;
-	left: 1100px;
+	position: relative;
+	right: -1100px;
+	top: -346px;
 	transform: scale(0.9);
 }
 
@@ -258,7 +197,7 @@ div p {
 	width: 8px;
 	background: green;
 	border-radius: 5px;
-	position: absolute;
+	position: relative;
 	box-shadow: 0 5px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -302,4 +241,48 @@ div p {
 	position: absolute;
 	content: '';
 	border-radius: 5px;
+}
+
+
+.hill {
+	height: 100px;
+	width: 200px;
+	background: #E2B98D;
+	border-radius: 41%;
+	position: relative;
+	top: 275px;
+	left: -10;
+	transform: rotate(8deg);
+	z-index: -1;
+}
+
+.mesa {
+	height: 100px;
+	width: 400px;
+	background: sienna;
+	border-radius: 44%;
+	position: relative;
+	top: 180px;
+	left: 849px;
+	transform: rotate(8deg);
+	z-index: -1;
+}
+
+.mountain {
+	height: 100px;
+	width: 300;
+	background: sienna;
+	border-radius: 31%;
+	position: relative;
+	top: 60px;
+	left: 1131px;
+	transform: rotate(9deg);
+	z-index: -1;
+}
+
+footer {
+	position: relative;
+	width: 100%;
+	bottom: 0;
+	height: 0px;
 }
