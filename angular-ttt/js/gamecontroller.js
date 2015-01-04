@@ -7,18 +7,22 @@ GameController.$inject = ['$firebase'];
 function GameController($firebase){
 
 	var game = this;
-	var ref = new Firebase('https://tttdb.firebaseio.com/gamedata');
+	// var ref = new Firebase('https://tttdb.firebaseio.com/gamedata');
+	var ref = new Firebase('https://tttdb.firebaseio.com');
+	var gamesRef = ref.child('gamedata');
 	game.user;
 	game.fbData;
 	game.playSquare = playSquare;
 	game.initialize = initialize;
 	game.joinGame = joinGame;
+	game.joinGameID;
 	game.gameData = {
 		startingPlayer: "Player One",
 		currentPlayer: "Player One",
 		scoreBoard: [0,0,0],
 		playCounter: 0,
 		winner: "",
+		gameName: "",
 		// hostPlayer: "",
 		// guestPlayer: "",
 		board: [
@@ -28,17 +32,40 @@ function GameController($firebase){
 			]
 		};
 
+
 	function initialize() {
-		ref.set(game.gameData);
-		game.fbData = $firebase(ref).$asObject();
-		game.user = "Player One"
+		// ref.set(game.gameData);
+		var myGameName = prompt("Enter the name of your game:");
+		var newGameRef = gamesRef.push(game.gameData);
+		var gameID = newGameRef.key();
+		var currentGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + gameID)
+		// console.log(myGameRef)
+		// var currentGameRef;
+		// game.fbData = $firebase(ref).$asObject();
+		// var myGame = gamesRef.orderByKey().equalTo(gameID).on('child_added', function(snapshot){
+		// 		currentGameRef = snapshot.val();
+		// 		console.log(currentGameRef)
+		// 		return currentGameRef;
+		// 	});
+		// console.log(currentGameRef);
+		// game.fbData = $firebase(gamesRef).$asObject();
+		game.fbData = $firebase(currentGameRef).$asObject();
+		currentGameRef.update({
+  			"gameName": myGameName
+		});
+		game.user = "Player One";
 		return game.fbData;
 	};
 
 	function joinGame() {
-		game.fbData = $firebase(ref).$asObject();
-		game.user = "Player Two"
-		return game.fbData;
+		var joinGameName = prompt("Enter the name of the game you want to join:");
+		gamesRef.orderByChild('gameName').equalTo(joinGameName).on('child_added', function(snapshot){
+			var joinGameID = snapshot.key();
+			var joinGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + joinGameID)
+			game.fbData = $firebase(joinGameRef).$asObject();
+			game.user = "Player Two";
+			return game.fbData;
+		});
 	};
 
 	function resetGame() {
@@ -152,7 +179,7 @@ function GameController($firebase){
 			}
 		}
 			if (tieCheck == 0){
-				alert("Tie Game.");
+				game.fbData.winner = "Cat's Game!";
 				game.fbData.scoreBoard[0] += 1;
 				setTimeout(function() { resetGame(); }, 1000);
 			}

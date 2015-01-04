@@ -43,8 +43,9 @@ h1 {
 
 h2 {
 	text-align: center;
+	margin: 0;
 	position: relative;
-	top: -170px;
+	top: -112px;
 	left: 286px;
 	font-size: 72px;
 	white-space: nowrap;
