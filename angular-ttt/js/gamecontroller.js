@@ -24,6 +24,7 @@ function GameController($firebase){
 		playCounter: 0,
 		winner: "",
 		gameName: "",
+		openGame: true,
 		// hostPlayer: "",
 		// guestPlayer: "",
 		board: [
@@ -36,7 +37,26 @@ function GameController($firebase){
 	getGames();
 
 	function initialize() {
-		// ref.set(game.gameData);
+		var error;
+		getGames();
+		if (game.gamesList.length > 0) {
+			for (i = 0; i < game.gamesList.length; i++){
+				if (game.gamesList[i] == game.newname){
+					error = true;
+					game.nameError = "This name has been taken! Please enter a different name.";
+					break;
+				}
+			}
+			if (error != true) {
+				setGame()
+			}
+		}
+		else {
+			setGame();
+		}
+	};
+
+	function setGame () {
 		var myGameName = game.newname;
 		var newGameRef = game.gamesRef.push(game.gameData);
 		var gameID = newGameRef.key();
@@ -46,8 +66,8 @@ function GameController($firebase){
   			"gameName": myGameName
 		});
 		game.user = "Player One";
-		return game.fbData;
-	};
+		return game.fbData;	
+	}
 
 	function joinGame(pick) {
 		game.gamesRef.orderByChild('gameName').equalTo(pick).on('child_added', function(snapshot){
@@ -55,6 +75,10 @@ function GameController($firebase){
 			var joinGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + joinGameID)
 			game.fbData = $firebase(joinGameRef).$asObject();
 			game.user = "Player Two";
+			// game.fbData.openGame = false;
+			joinGameRef.update({
+				"openGame":"false" 
+			});
 			return game.fbData;
 		});
 	};

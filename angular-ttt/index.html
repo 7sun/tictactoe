@@ -41,10 +41,11 @@
 						<button ng-click="join = true">Join Game</button>
 					</div>
 					<form ng-submit="gc.initialize()" class="new-game" ng-show="new == true">
-						<input type="text" ng-model="gc.newname" placeholder="Name your game" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name your game'" required>
+						<input type="text" ng-model="gc.newname" placeholder="Name your game" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name your game'" ng-change="gc.nameError = ''" required>
 						<span>
                 			<button ng-show="gc.newname != undefined" type="submit">Start Game</button>
               			</span>
+              			<p>{{gc.nameError}}</p>
 					</form>
 					<div class="games-list" ng-show="join == true">
 						<h3 ng-click="gc.getGames()">Select a game</h3>
