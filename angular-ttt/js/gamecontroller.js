@@ -6,7 +6,6 @@ GameController.$inject = ['$firebase'];
 
 function GameController($firebase){
 	var game = this;
-	// var ref = new Firebase('https://tttdb.firebaseio.com/gamedata');
 	var ref = new Firebase('https://tttdb.firebaseio.com');
 	game.gamesRef = ref.child('gamedata');
 	game.user;
@@ -86,8 +85,10 @@ function GameController($firebase){
 	function getGames() {
 		var list = [];
 		game.gamesRef.orderByKey().limitToLast(10).on('child_added', function(snapshot){
-			var mySnap = snapshot.val().gameName;
-			list.unshift(mySnap);
+			if (snapshot.val().openGame == true) {
+				var mySnap = snapshot.val().gameName;
+				list.unshift(mySnap);
+			}
 		});
 		game.gamesList = list;
 	};

@@ -14,12 +14,6 @@ body {
 	overflow-x: hidden;
 }
 
-.gray {
-	background-color: gray;
-	opacity: 0.8;
-}
-/*style to gray out bg when a winner is announced*/
-
 section {
 	min-height: 720px;
 }
@@ -301,17 +295,15 @@ div p {
 	box-shadow: 0 5px 0px rgba(0, 0, 0, 0.2);
 }
 
-.cactus-right-arm {
+.right-arm {
 	height: 7px;
 	width: 14px;
-	background: green;
 	left: 5px;
 	top: 21px;
-	position: absolute;
-	border-radius: 5px;
+	box-shadow: none;
 }
 
-.cactus-right-arm:after {
+.right-arm:after {
 	height: 20px;
 	width: 7px;
 	background: green;
@@ -322,17 +314,15 @@ div p {
 	border-radius: 5px;
 }
 
-.cactus-left-arm {
+.left-arm {
 	height: 7px;
 	width: 14px;
-	background: green;
 	left: -11px;
 	top: 27px;
-	position: absolute;
-	border-radius: 5px;
+	box-shadow: none;
 }
 
-.cactus-left-arm:after {
+.left-arm:after {
 	height: 20px;
 	width: 7px;
 	background: green;
