@@ -36,8 +36,20 @@
 			<section ng-controller="GameController as gc">
 				<div ng-hide="gc.user != undefined">
 					<h1>Tic Tac Toe</h1>
-					<button ng-click="gc.initialize()">New Game</button>
-					<button ng-click="gc.joinGame()">Join Game</button>
+					<div class="title buttons" ng-hide="new == true || join == true">
+						<button ng-click="new = true">New Game</button>
+						<button ng-click="join = true">Join Game</button>
+					</div>
+					<form ng-submit="gc.initialize()" class="new-game" ng-show="new == true">
+						<input type="text" ng-model="gc.newname" placeholder="Name your game" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name your game'" required>
+						<span>
+                			<button ng-show="gc.newname != undefined" type="submit">Start Game</button>
+              			</span>
+					</form>
+					<div class="games-list" ng-show="join == true">
+						<h3 ng-click="gc.getGames()">Select a game</h3>
+						<button class="show-games" ng-repeat="game in gc.gamesList" ng-click="gc.joinGame(game)">{{game}}</button>
+					</div>
 				</div>
 				<div class="game-header" ng-show="gc.user != undefined">
 					<div class="player-one-score">
@@ -61,12 +73,6 @@
 				</div>
 				<div class="winner">
 					<h2 ng-show="gc.fbData.winner != undefined">{{gc.fbData.winner}}</h2>
-<!-- 					<h2>Player One Wins!</h2> -->
-<!-- 				<ul>
-					<li>{{gc.fbData.scoreBoard[1]}}: Blue Player Wins</li>
-					<li>{{gc.fbData.scoreBoard[2]}}: Red Player Wins</li>
-					<li>{{gc.fbData.scoreBoard[0]}}: Ties</li>
-				</ul> -->
 				</div>
 			</section>
 			<footer>

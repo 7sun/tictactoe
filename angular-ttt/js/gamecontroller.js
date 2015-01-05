@@ -5,17 +5,18 @@ angular
 GameController.$inject = ['$firebase'];
 
 function GameController($firebase){
-
 	var game = this;
 	// var ref = new Firebase('https://tttdb.firebaseio.com/gamedata');
 	var ref = new Firebase('https://tttdb.firebaseio.com');
-	var gamesRef = ref.child('gamedata');
+	game.gamesRef = ref.child('gamedata');
 	game.user;
 	game.fbData;
+	game.joinGameID;
+	game.gamesList = [];
 	game.playSquare = playSquare;
 	game.initialize = initialize;
 	game.joinGame = joinGame;
-	game.joinGameID;
+	game.getGames = getGames;
 	game.gameData = {
 		startingPlayer: "Player One",
 		currentPlayer: "Player One",
@@ -32,23 +33,14 @@ function GameController($firebase){
 			]
 		};
 
+	getGames();
 
 	function initialize() {
 		// ref.set(game.gameData);
-		var myGameName = prompt("Enter the name of your game:");
-		var newGameRef = gamesRef.push(game.gameData);
+		var myGameName = game.newname;
+		var newGameRef = game.gamesRef.push(game.gameData);
 		var gameID = newGameRef.key();
 		var currentGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + gameID)
-		// console.log(myGameRef)
-		// var currentGameRef;
-		// game.fbData = $firebase(ref).$asObject();
-		// var myGame = gamesRef.orderByKey().equalTo(gameID).on('child_added', function(snapshot){
-		// 		currentGameRef = snapshot.val();
-		// 		console.log(currentGameRef)
-		// 		return currentGameRef;
-		// 	});
-		// console.log(currentGameRef);
-		// game.fbData = $firebase(gamesRef).$asObject();
 		game.fbData = $firebase(currentGameRef).$asObject();
 		currentGameRef.update({
   			"gameName": myGameName
@@ -57,15 +49,23 @@ function GameController($firebase){
 		return game.fbData;
 	};
 
-	function joinGame() {
-		var joinGameName = prompt("Enter the name of the game you want to join:");
-		gamesRef.orderByChild('gameName').equalTo(joinGameName).on('child_added', function(snapshot){
+	function joinGame(pick) {
+		game.gamesRef.orderByChild('gameName').equalTo(pick).on('child_added', function(snapshot){
 			var joinGameID = snapshot.key();
 			var joinGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + joinGameID)
 			game.fbData = $firebase(joinGameRef).$asObject();
 			game.user = "Player Two";
 			return game.fbData;
 		});
+	};
+
+	function getGames() {
+		var list = [];
+		game.gamesRef.orderByKey().limitToLast(10).on('child_added', function(snapshot){
+			var mySnap = snapshot.val().gameName;
+			list.unshift(mySnap);
+		});
+		game.gamesList = list;
 	};
 
 	function resetGame() {
@@ -118,52 +118,42 @@ function GameController($firebase){
 	};
 
 	function outcome(playerNum){
-		if (game.fbData.board[0].owner == playerNum && game.fbData.board[0].owner == game.fbData.board[1].owner && game.fbData.board[1].owner == game.fbData.board[2].owner){
+		function getWinner(){
 			game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
 			setTimeout(function() { resetGame(); }, 3000);
+		}
+
+		if (game.fbData.board[0].owner == playerNum && game.fbData.board[0].owner == game.fbData.board[1].owner && game.fbData.board[1].owner == game.fbData.board[2].owner){
+			getWinner();
 		}
 
 		else if (game.fbData.board[3].owner == playerNum && game.fbData.board[3].owner == game.fbData.board[4].owner && game.fbData.board[4].owner == game.fbData.board[5].owner){
-			game.fbData.winner = "Player " + playerNum + " wins!";
-			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 3000);
+			getWinner();
 		}
 
 		else if (game.fbData.board[6].owner == playerNum && game.fbData.board[6].owner == game.fbData.board[7].owner && game.fbData.board[7].owner == game.fbData.board[8].owner){
-			game.fbData.winner = "Player " + playerNum + " wins!";
-			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 3000);
+			getWinner();
 		}
 
 		else if (game.fbData.board[0].owner == playerNum && game.fbData.board[0].owner == game.fbData.board[3].owner && game.fbData.board[3].owner == game.fbData.board[6].owner){
-			game.fbData.winner = "Player " + playerNum + " wins!";
-			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 3000);
+			getWinner();
 		}
 
 		else if (game.fbData.board[1].owner == playerNum && game.fbData.board[1].owner == game.fbData.board[4].owner && game.fbData.board[4].owner == game.fbData.board[7].owner){
-			game.fbData.winner = "Player " + playerNum + " wins!";
-			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 3000);
+			getWinner();
 		}
 
 		else if (game.fbData.board[2].owner == playerNum && game.fbData.board[2].owner == game.fbData.board[5].owner && game.fbData.board[5].owner == game.fbData.board[8].owner){
-			game.fbData.winner = "Player " + playerNum + " wins!";
-			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 3000);
+			getWinner();
 		}
 
 		else if (game.fbData.board[0].owner == playerNum && game.fbData.board[0].owner == game.fbData.board[4].owner && game.fbData.board[4].owner == game.fbData.board[8].owner){
-			game.fbData.winner = "Player " + playerNum + " wins!";
-			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 3000);
+			getWinner();
 		}
 
 		else if (game.fbData.board[2].owner == playerNum && game.fbData.board[2].owner == game.fbData.board[4].owner && game.fbData.board[4].owner == game.fbData.board[6].owner){
-			game.fbData.winner = "Player " + playerNum + " wins!";
-			game.fbData.scoreBoard[playerNum] += 1;
-			setTimeout(function() { resetGame(); }, 3000);
+			getWinner();
 		}
 
 		else {
@@ -184,5 +174,4 @@ function GameController($firebase){
 				setTimeout(function() { resetGame(); }, 1000);
 			}
 	};
-
 };
