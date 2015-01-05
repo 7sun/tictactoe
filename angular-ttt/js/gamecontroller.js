@@ -1,5 +1,5 @@
 angular
-	.module("gameApp")
+	.module("gameApp", ['firebase'])
 	.controller("GameController", GameController);
 
 GameController.$inject = ['$firebase'];
@@ -89,8 +89,8 @@ function GameController($firebase){
 		var list = [];
 		game.gamesRef.orderByKey().limitToLast(10).on('child_added', function(snapshot){
 			if (snapshot.val().openGame == true) {
-				var mySnap = snapshot.val().gameName;
-				list.unshift(mySnap);
+				var gamesSnap = snapshot.val().gameName;
+				list.unshift(gamesSnap);
 			}
 		});
 		game.gamesList = list;
@@ -153,7 +153,6 @@ function GameController($firebase){
 			else {
 				game.fbData.winner = game.fbData.guestPlayer + " wins!"
 			}
-			// game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
 			setTimeout(function() { resetGame(); }, 3000);
 		}
