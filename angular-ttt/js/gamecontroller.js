@@ -24,8 +24,8 @@ function GameController($firebase){
 		winner: "",
 		gameName: "",
 		openGame: true,
-		// hostPlayer: "",
-		// guestPlayer: "",
+		hostPlayer: "Player One",
+		guestPlayer: "Player Two",
 		board: [
 			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0},
 			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0},
@@ -56,27 +56,30 @@ function GameController($firebase){
 	};
 
 	function setGame () {
+		var hostName = game.hostName;
 		var myGameName = game.newname;
 		var newGameRef = game.gamesRef.push(game.gameData);
 		var gameID = newGameRef.key();
 		var currentGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + gameID)
 		game.fbData = $firebase(currentGameRef).$asObject();
 		currentGameRef.update({
-  			"gameName": myGameName
+  			"gameName": myGameName,
+  			"hostPlayer": hostName
 		});
 		game.user = "Player One";
 		return game.fbData;	
 	}
 
 	function joinGame(pick) {
+		var guestName = game.guestName;
 		game.gamesRef.orderByChild('gameName').equalTo(pick).on('child_added', function(snapshot){
 			var joinGameID = snapshot.key();
 			var joinGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + joinGameID)
 			game.fbData = $firebase(joinGameRef).$asObject();
 			game.user = "Player Two";
-			// game.fbData.openGame = false;
 			joinGameRef.update({
-				"openGame":"false" 
+				"openGame": "false",
+				"guestPlayer": guestName
 			});
 			return game.fbData;
 		});
@@ -144,7 +147,13 @@ function GameController($firebase){
 
 	function outcome(playerNum){
 		function getWinner(){
-			game.fbData.winner = "Player " + playerNum + " wins!";
+			if (playerNum == 1) {
+				game.fbData.winner = game.fbData.hostPlayer + " wins!";
+			}
+			else {
+				game.fbData.winner = game.fbData.guestPlayer + " wins!"
+			}
+			// game.fbData.winner = "Player " + playerNum + " wins!";
 			game.fbData.scoreBoard[playerNum] += 1;
 			setTimeout(function() { resetGame(); }, 3000);
 		}
