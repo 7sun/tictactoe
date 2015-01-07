@@ -47,20 +47,20 @@ function GameController($firebase){
 				}
 			}
 			if (error != true) {
-				setGame()
+				setGame();
 			}
 		}
 		else {
 			setGame();
 		}
-	};
+	}
 
 	function setGame () {
 		var hostName = game.hostName;
 		var myGameName = game.newname;
 		var newGameRef = game.gamesRef.push(game.gameData);
 		var gameID = newGameRef.key();
-		var currentGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + gameID)
+		var currentGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + gameID);
 		game.fbData = $firebase(currentGameRef).$asObject();
 		currentGameRef.update({
   			"gameName": myGameName,
@@ -74,7 +74,7 @@ function GameController($firebase){
 		var guestName = game.guestName;
 		game.gamesRef.orderByChild('gameName').equalTo(pick).on('child_added', function(snapshot){
 			var joinGameID = snapshot.key();
-			var joinGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + joinGameID)
+			var joinGameRef = new Firebase('https://tttdb.firebaseio.com/gamedata/' + joinGameID);
 			game.fbData = $firebase(joinGameRef).$asObject();
 			game.user = "Player Two";
 			joinGameRef.update({
@@ -83,7 +83,7 @@ function GameController($firebase){
 			});
 			return game.fbData;
 		});
-	};
+	}
 
 	function getGames() {
 		var list = [];
@@ -94,56 +94,46 @@ function GameController($firebase){
 			}
 		});
 		game.gamesList = list;
-	};
+	}
 
 	function resetGame() {
-		game.fbData.board = [
-			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0},
-			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0},
-			{owner: 0, played: 0}, {owner: 0, played: 0}, {owner: 0, played: 0}
-			]
+		game.fbData.board = game.gameData.board
 		game.fbData.playCounter = 0;
 		game.fbData.winner = "";
 		changeStartingPlayer();
 		game.fbData.$save();
-	};
+	}
 
 	function playSquare(player, i) {
 		var square = game.fbData.board[i];
-		if (player == "Player One" && game.user == "Player One"){
+		function setSquares(playerNum) {
 			if (square.owner == 0){
-				square.owner = 1;
+				square.owner = playerNum;
 				game.fbData.playCounter += 1;
 				square.played = game.fbData.playCounter;
-				outcome(1);
+				outcome(playerNum);
 				changeTurn();
 			}
 			else {
 				console.log("no play available");
 			}
+		}
+		if (player == "Player One" && game.user == "Player One"){
+			setSquares(1);
 		}
 		else if (player == "Player Two" && game.user == "Player Two"){
-			if (square.owner == 0){
-				square.owner = 2;
-				game.fbData.playCounter += 1;
-				square.played = game.fbData.playCounter;
-				outcome(2);
-				changeTurn();
-		}
-			else {
-				console.log("no play available");
-			}
+			setSquares(2);
 		}
 		game.fbData.$save();
-	};
+	}
 
 	function changeTurn() {
 		game.fbData.currentPlayer = (game.fbData.currentPlayer == "Player One" ? "Player Two" : "Player One");
-	};
+	}
 
 	function changeStartingPlayer() {
 		game.fbData.startingPlayer = (game.fbData.startingPlayer == "Player One" ? "Player Two" : "Player One");
-	};
+	}
 
 	function outcome(playerNum){
 		function getWinner(){
@@ -192,7 +182,7 @@ function GameController($firebase){
 		else {
 			checkForTie();
 		}
-	};
+	}
 
 	function checkForTie(){
 		var tieCheck = 0;
@@ -206,5 +196,5 @@ function GameController($firebase){
 				game.fbData.scoreBoard[0] += 1;
 				setTimeout(function() { resetGame(); }, 1000);
 			}
-	};
-};
+	}
+}
